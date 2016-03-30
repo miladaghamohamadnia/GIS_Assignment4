@@ -9,15 +9,23 @@
 	tileLayer.addTo(map);
 	var LeafIcon = L.Icon.extend({
     options: {
-        iconSize:     [0.2, 0.2],
+        iconSize:     [20, 20],
         iconAnchor:   [0, 0],
         popupAnchor:  [0, 0]
     }
 	});
 
 
-map.on('click', function(e) {
 
+ // load GeoJSON from an external file
+ $.getJSON("596acres.geojson",function(data){
+    // add GeoJSON layer to the map once the file is loaded
+  L.geoJson(data).addTo(map);
+  
+//  L.geoJson(data).addTo(map).bindPopup("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng);
+  });
+
+map.on('click', function(e) {
  // load GeoJSON from an external file
  $.getJSON("596acres.geojson",function(data){
     // add GeoJSON layer to the map once the file is loaded
